@@ -165,5 +165,19 @@ export const Schemas = {
             // El precio no puede ser negativo
             price: Joi.number().min(0)
         })
+    },
+
+    //Validaciones relacionadas con los tags
+    tag: {
+        add: Joi.object({
+            tag: Joi.string()
+                .valid(...BOOK_TAGS)
+                .required()
+        }),
+        replace: Joi.object({
+            tags: Joi.array()
+                .items(Joi.string().valid(...BOOK_TAGS))
+                .required()
+        })
     }
 };
